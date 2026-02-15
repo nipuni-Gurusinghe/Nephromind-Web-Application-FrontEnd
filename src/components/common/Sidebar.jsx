@@ -10,9 +10,10 @@ const Sidebar = () => {
     const menuItems = [
         { name: 'Dashboard', path: '/dashboard', icon: '📊' },
         { name: 'Events', path: '/events', icon: '📅' },
-        { name: 'Multimedia', path: '/multimedia', icon: '🎬' }, // Updated icon and ensured path consistency
+        { name: 'Multimedia', path: '/multimedia', icon: '🎬' },
         { name: 'FAQ', path: '/faq', icon: '❓' },
-        { name: 'Farmer Safety', path: '/farmer-safety', icon: '🚜' }, // New Item
+        { name: 'Farmer Safety', path: '/farmer-safety', icon: '🚜' },
+        { name: 'Healthy Habits', path: '/healthy-habits', icon: '🌿' },
     ];
 
     const adminItems = [
