@@ -1,0 +1,192 @@
+/* Container & Background */
+.login-container {
+    background: linear-gradient(135deg, #bdc7e0 0%, #032174 100%);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    margin: 0;
+}
+
+/* Card Structure */
+.login-card {
+    display: flex;
+    width: 900px;
+    height: 600px;
+    background: #1a1a1a;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Left Image Section */
+.login-image-section {
+    flex: 1;
+    background: linear-gradient(135deg, #bdc7e0 0%, #032174 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.illustration {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Right Form Section */
+.login-form-section {
+    flex: 1;
+    background: #20273b; /* Deep slate color for form background */
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-header h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-header p {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+/* Text Box & Input Styles */
+.input-group {
+    margin-bottom: 24px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #94a3b8;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 15px 14px 45px; /* Left padding space for icons */
+    background-color: #0f172a; /* Darker input background */
+    border: 1px solid #334155;
+    border-radius: 10px;
+    color: #f8fafc;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* Input Focus/Hover States */
+.input-wrapper input:hover {
+    border-color: #475569;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: #10b981; /* Green border on focus */
+    background-color: #1e293b;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1); /* Subtle green glow */
+}
+
+.input-wrapper input::placeholder {
+    color: #475569;
+    font-size: 14px;
+}
+
+/* Icons within Input */
+.input-wrapper .icon {
+    position: absolute;
+    left: 16px;
+    font-size: 18px;
+    color: #64748b;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper .eye-icon {
+    position: absolute;
+    right: 16px;
+    font-size: 18px;
+    color: #64748b;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.input-wrapper .eye-icon:hover {
+    color: #10b981;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-scan {
+    flex: 1;
+    background: #334155;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.btn-scan:hover {
+    background: #475569;
+}
+
+.btn-login {
+    flex: 1;
+    background: #10b981; /* Primary Green */
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    transition: transform 0.1s, background 0.2s;
+}
+
+.btn-login:hover {
+    background: #059669;
+    transform: translateY(-1px);
+}
+
+.btn-login:active {
+    transform: translateY(0);
+}
+
+/* Footer Link */
+.forgot-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+}
+
+.forgot-link:hover {
+    color: #10b981;
+}
