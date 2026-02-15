@@ -14,6 +14,7 @@ const Sidebar = () => {
         { name: 'FAQ', path: '/faq', icon: '❓' },
         { name: 'Farmer Safety', path: '/farmer-safety', icon: '🚜' },
         { name: 'Healthy Habits', path: '/healthy-habits', icon: '🌿' },
+        { name: 'Safe Water Guide', path: '/safe-water-guide', icon: '💧' },
     ];
 
     const adminItems = [

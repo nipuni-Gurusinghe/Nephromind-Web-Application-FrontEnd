@@ -7,6 +7,7 @@ import MultimediaDashboard from './components/MultimediaDashboard';
 import FAQDashboard from './components/FAQDashboard';
 import FarmerSafetyTipsDashboard from './components/FarmerSafetyTipsDashboard';
 import HealthyHabitsDashboard from './components/HealthyHabitsDashboard';
+import SafeWaterGuidesDashboard from './components/SafeWaterGuidesDashboard';
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/faq" element={<FAQDashboard />} />
                 <Route path="/farmer-safety" element={<FarmerSafetyTipsDashboard />} />
                 <Route path="/healthy-habits" element={<HealthyHabitsDashboard />} />
+                <Route path="/safe-water-guide" element={<SafeWaterGuidesDashboard />} />
             </Routes>
         </Router>
     );
