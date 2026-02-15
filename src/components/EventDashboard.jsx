@@ -144,7 +144,7 @@ const EventDashboard = () => {
                                         </span>
                                     </td>
                                     <td className="action-icons">
-                                        <span className="edit-icon" style={{cursor: 'pointer'}}>✏️</span>
+                                        {/* <span className="edit-icon" style={{cursor: 'pointer'}}>✏️</span> */}
                                         <span 
                                             className="delete-icon" 
                                             onClick={() => confirmDelete(event._id || event.id)}

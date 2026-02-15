@@ -5,6 +5,7 @@ import AdminDashboard from './components/AdminDashboard';
 import EventDashboard from './components/EventDashboard';
 import MultimediaDashboard from './components/MultimediaDashboard';
 import FAQDashboard from './components/FAQDashboard';
+import FarmerSafetyTipsDashboard from './components/FarmerSafetyTipsDashboard';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/events" element={<EventDashboard />} />
                 <Route path="/multimedia" element={<MultimediaDashboard />} />
                 <Route path="/faq" element={<FAQDashboard />} />
+                <Route path="/farmer-safety" element={<FarmerSafetyTipsDashboard />} />
             </Routes>
         </Router>
     );

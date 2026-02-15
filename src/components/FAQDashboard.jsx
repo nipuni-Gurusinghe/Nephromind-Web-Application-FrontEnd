@@ -135,7 +135,7 @@ const FAQDashboard = () => {
                                         </span>
                                     </td>
                                     <td className="action-icons">
-                                        <span className="edit-icon" style={{cursor: 'pointer'}}>✏️</span>
+                                        {/* <span className="edit-icon" style={{cursor: 'pointer'}}>✏️</span> */}
                                         <span 
                                             className="delete-icon" 
                                             onClick={() => confirmDelete(faq._id || faq.id)}

@@ -157,7 +157,7 @@ const MultimediaDashboard = () => {
                                         </span>
                                     </td>
                                     <td className="action-icons">
-                                        <span className="edit-icon" style={{cursor: 'pointer'}}>✏️</span>
+                                        {/* <span className="edit-icon" style={{cursor: 'pointer'}}>✏️</span> */}
                                         <span 
                                             className="delete-icon" 
                                             onClick={() => confirmDelete(item._id || item.id)}

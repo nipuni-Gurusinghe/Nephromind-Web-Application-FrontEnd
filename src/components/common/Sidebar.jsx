@@ -12,6 +12,7 @@ const Sidebar = () => {
         { name: 'Events', path: '/events', icon: '📅' },
         { name: 'Multimedia', path: '/multimedia', icon: '🎬' }, // Updated icon and ensured path consistency
         { name: 'FAQ', path: '/faq', icon: '❓' },
+        { name: 'Farmer Safety', path: '/farmer-safety', icon: '🚜' }, // New Item
     ];
 
     const adminItems = [
