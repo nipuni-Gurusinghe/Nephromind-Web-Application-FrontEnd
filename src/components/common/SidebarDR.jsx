@@ -9,6 +9,8 @@ const SidebarDR = () => {
     const menuItems = [
         { name: 'Doctor Dashboard', path: '/doctor-dashboard', icon: '🩺' },
         { name: 'View Events', path: '/doctor-events', icon: '📅' },
+        { name: 'FAQ', path: '/doctor-faq', icon: '❓' },
+        { name: 'Multimedia', path: '/doctor-multimedia', icon: '🎬' },
     ];
 
     const handleLogout = () => {

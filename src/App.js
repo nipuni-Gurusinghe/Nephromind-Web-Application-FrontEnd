@@ -10,6 +10,8 @@ import HealthyHabitsDashboard from './components/HealthyHabitsDashboard';
 import SafeWaterGuidesDashboard from './components/SafeWaterGuidesDashboard';
 import DoctorDashboard from './components/DoctorDashboard';
 import DoctorEvents from './components/DoctorEvents';
+import DoctorFAQ from './components/DoctorFAQ';
+import DoctorMultimedia from './components/DoctorMultimedia';
 
 function App() {
     return (
@@ -25,6 +27,8 @@ function App() {
                 <Route path="/safe-water-guide" element={<SafeWaterGuidesDashboard />} />
                 <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
                 <Route path="/doctor-events" element={<DoctorEvents />} />
+                <Route path="/doctor-faq" element={<DoctorFAQ />} />
+                <Route path="/doctor-multimedia" element={<DoctorMultimedia />} />
             </Routes>
         </Router>
     );
