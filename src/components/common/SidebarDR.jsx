@@ -11,6 +11,7 @@ const SidebarDR = () => {
         { name: 'View Events', path: '/doctor-events', icon: '📅' },
         { name: 'FAQ', path: '/doctor-faq', icon: '❓' },
         { name: 'Multimedia', path: '/doctor-multimedia', icon: '🎬' },
+        { name: 'Pending Questions', path: '/doctor/questions', icon: '📝' },
     ];
 
     const handleLogout = () => {

@@ -12,6 +12,7 @@ import DoctorDashboard from './components/DoctorDashboard';
 import DoctorEvents from './components/DoctorEvents';
 import DoctorFAQ from './components/DoctorFAQ';
 import DoctorMultimedia from './components/DoctorMultimedia';
+import DoctorQuestions from './components/DoctorQuestions';
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/doctor-events" element={<DoctorEvents />} />
                 <Route path="/doctor-faq" element={<DoctorFAQ />} />
                 <Route path="/doctor-multimedia" element={<DoctorMultimedia />} />
+                <Route path="/doctor/questions" element={<DoctorQuestions />} />
             </Routes>
         </Router>
     );

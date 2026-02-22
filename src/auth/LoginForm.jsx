@@ -45,6 +45,7 @@ const LoginForm = () => {
                 const data = await doctorRes.json();
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('role', 'doctor');
+                localStorage.setItem('doctorId', data.doctorId || data.uid || data.id);                
                 navigate('/doctor-dashboard');
                 return;
             }
