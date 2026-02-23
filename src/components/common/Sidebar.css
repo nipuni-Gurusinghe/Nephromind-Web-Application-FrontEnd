@@ -7,7 +7,18 @@
     position: fixed;
     height: 100vh;
     border-right: 1px solid #f0f0f0;
+    overflow-y: auto; 
+    scrollbar-width: thin;
 }
+/* For Chrome/Safari */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 10px;
+}
+
 
 .sidebar-brand {
     display: flex;

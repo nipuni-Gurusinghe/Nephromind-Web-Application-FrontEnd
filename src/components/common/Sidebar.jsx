@@ -18,7 +18,7 @@ const Sidebar = () => {
     ];
 
     const adminItems = [
-        { name: 'Doctors', path: '/doctors', icon: '👨‍⚕️' },
+       { name: 'Doctors', path: '/doctor-handle', icon: '👨‍⚕️' },
         { name: 'Reports', path: '/reports', icon: '📈' },
         { name: 'Settings', path: '/settings', icon: '⚙️' },
     ];

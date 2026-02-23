@@ -13,6 +13,8 @@ import DoctorEvents from './components/DoctorEvents';
 import DoctorFAQ from './components/DoctorFAQ';
 import DoctorMultimedia from './components/DoctorMultimedia';
 import DoctorQuestions from './components/DoctorQuestions';
+import AddDoctor from './components/AddDoctor';
+
 
 function App() {
     return (
@@ -31,6 +33,7 @@ function App() {
                 <Route path="/doctor-faq" element={<DoctorFAQ />} />
                 <Route path="/doctor-multimedia" element={<DoctorMultimedia />} />
                 <Route path="/doctor/questions" element={<DoctorQuestions />} />
+                <Route path="/doctor-handle" element={<AddDoctor />} />
             </Routes>
         </Router>
     );
