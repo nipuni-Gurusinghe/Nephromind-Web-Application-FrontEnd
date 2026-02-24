@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap');
+
+/* Layout */
+.dm-layout {
+    display: flex;
+    background: #f0f4f8;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.dm-container {
+    flex: 1;
+    margin-left: 300px;
+    padding: 40px;
+    width: calc(100% - 300px);
+}
+
+/* Header */
+.dm-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.dm-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dm-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ef4444;
+    text-transform: uppercase;
+}
+
+.dm-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.dm-subtitle {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+}
+
+.dm-header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Search */
+.dm-search-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dm-search-icon {
+    position: absolute;
+    left: 12px;
+    font-size: 14px;
+}
+
+.dm-search {
+    padding: 10px 16px 10px 36px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    background: white;
+    color: #1e293b;
+    outline: none;
+    width: 220px;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.dm-search:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.dm-count-pill {
+    background: #1e293b;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Filter Tabs */
+.dm-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+}
+
+.dm-tab {
+    padding: 8px 18px;
+    border-radius: 50px;
+    border: 1.5px solid #e2e8f0;
+    background: white;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: capitalize;
+}
+
+.dm-tab:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.dm-tab-active {
+    background: #ef4444;
+    border-color: #ef4444;
+    color: white !important;
+    font-weight: 600;
+}
+
+/* Loading */
+.dm-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px;
+    gap: 16px;
+    color: #64748b;
+}
+
+.dm-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #e2e8f0;
+    border-top-color: #ef4444;
+    border-radius: 50%;
+    animation: dm-spin 0.8s linear infinite;
+}
+
+@keyframes dm-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Empty */
+.dm-empty {
+    text-align: center;
+    padding: 80px;
+    color: #94a3b8;
+    font-size: 15px;
+}
+
+.dm-empty span {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+/* Grid */
+.dm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+/* Card */
+.dm-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    animation: dm-fadeup 0.4s ease both;
+}
+
+.dm-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes dm-fadeup {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Media Area */
+.dm-media-area {
+    width: 100%;
+    height: 190px;
+    background: #f8fafc;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* YouTube iframe */
+.dm-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Thumbnail */
+.dm-thumb-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+.dm-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.dm-thumb-wrap:hover .dm-thumbnail {
+    transform: scale(1.05);
+}
+
+/* Play Overlay */
+.dm-play-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.dm-thumb-wrap:hover .dm-play-overlay {
+    opacity: 1;
+}
+
+.dm-play-btn {
+    width: 52px;
+    height: 52px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #ef4444;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    padding-left: 4px;
+}
+
+/* Placeholder (no thumbnail) */
+.dm-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dm-placeholder-icon {
+    font-size: 52px;
+}
+
+/* Card Body */
+.dm-card-body {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.dm-card-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Type Badge */
+.dm-type-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 50px;
+    text-transform: capitalize;
+}
+
+/* Status */
+.dm-status {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 50px;
+}
+
+.dm-status-active {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.dm-status-inactive {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+/* Card Title */
+.dm-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Card Description */
+.dm-card-desc {
+    font-size: 13px;
+    color: #94a3b8;
+    margin: 0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Card Footer */
+.dm-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.dm-card-date {
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.dm-view-btn {
+    font-size: 12px;
+    font-weight: 700;
+    color: #ef4444;
+    text-decoration: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    background: #fee2e2;
+    transition: background 0.2s;
+}
+
+.dm-view-btn:hover {
+    background: #fecaca;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .dm-container {
+        margin-left: 80px;
+        width: calc(100% - 80px);
+        padding: 24px;
+    }
+
+    .dm-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .dm-header {
+        flex-direction: column;
+    }
+
+    .dm-search {
+        width: 100%;
+    }
+}

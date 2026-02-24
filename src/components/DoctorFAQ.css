@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap');
+
+/* Layout */
+.df-layout {
+    display: flex;
+    background: #f0f4f8;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.df-container {
+    flex: 1;
+    margin-left: 300px;
+    padding: 40px;
+    width: calc(100% - 300px);
+}
+
+/* Header */
+.df-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.df-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.df-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #8b5cf6;
+    text-transform: uppercase;
+}
+
+.df-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.df-subtitle {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+}
+
+.df-header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Search */
+.df-search-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.df-search-icon {
+    position: absolute;
+    left: 12px;
+    font-size: 14px;
+}
+
+.df-search {
+    padding: 10px 16px 10px 36px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    background: white;
+    color: #1e293b;
+    outline: none;
+    width: 240px;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.df-search:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.df-count-pill {
+    background: #1e293b;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Category Tabs */
+.df-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.df-tab {
+    padding: 8px 18px;
+    border-radius: 50px;
+    border: 1.5px solid #e2e8f0;
+    background: white;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.df-tab:hover {
+    border-color: #8b5cf6;
+    color: #8b5cf6;
+}
+
+.df-tab-active {
+    background: #8b5cf6;
+    border-color: #8b5cf6;
+    color: white !important;
+    font-weight: 600;
+}
+
+/* Loading */
+.df-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px;
+    gap: 16px;
+    color: #64748b;
+}
+
+.df-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #e2e8f0;
+    border-top-color: #8b5cf6;
+    border-radius: 50%;
+    animation: df-spin 0.8s linear infinite;
+}
+
+@keyframes df-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Empty */
+.df-empty {
+    text-align: center;
+    padding: 80px;
+    color: #94a3b8;
+    font-size: 15px;
+}
+
+.df-empty span {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+/* FAQ List */
+.df-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* FAQ Item */
+.df-item {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+    animation: df-fadeup 0.4s ease both;
+}
+
+.df-item:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.df-item-open {
+    box-shadow: 0 4px 24px rgba(139, 92, 246, 0.15);
+    border: 1.5px solid #8b5cf622;
+}
+
+@keyframes df-fadeup {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Question Row (Button) */
+.df-question-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    gap: 16px;
+}
+
+.df-question-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+}
+
+.df-q-number {
+    font-size: 11px;
+    font-weight: 700;
+    color: #8b5cf6;
+    background: #ede9fe;
+    padding: 4px 10px;
+    border-radius: 50px;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+.df-question-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1e293b;
+    line-height: 1.4;
+}
+
+.df-question-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+/* Category Badge */
+.df-cat-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 50px;
+    white-space: nowrap;
+}
+
+/* Chevron */
+.df-chevron {
+    font-size: 22px;
+    color: #94a3b8;
+    font-weight: 300;
+    transition: transform 0.25s ease;
+    display: inline-block;
+    line-height: 1;
+}
+
+.df-chevron-open {
+    transform: rotate(90deg);
+    color: #8b5cf6;
+}
+
+/* Answer Panel */
+.df-answer {
+    border-top: 1px solid #f1f5f9;
+    animation: df-expand 0.25s ease;
+}
+
+@keyframes df-expand {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.df-answer-inner {
+    padding: 20px 24px 20px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.df-answer-inner p {
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.df-updated {
+    font-size: 11px;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .df-container {
+        margin-left: 80px;
+        width: calc(100% - 80px);
+        padding: 24px;
+    }
+}
+
+@media (max-width: 640px) {
+    .df-header {
+        flex-direction: column;
+    }
+
+    .df-search {
+        width: 100%;
+    }
+
+    .df-answer-inner {
+        padding: 16px 20px;
+    }
+}

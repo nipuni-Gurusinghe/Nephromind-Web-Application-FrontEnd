@@ -8,7 +8,7 @@
 /* Main Content Area */
 .booking-container {
     flex: 1;
-    margin-left: 300px; /* This matches your Sidebar width to prevent cropping */
+    margin-left: 300px;
     padding: 40px;
     width: calc(100% - 260px);
 }
@@ -33,7 +33,7 @@
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    overflow: hidden; /* Keeps corners rounded */
+    overflow: hidden;
 }
 
 .booking-table {
@@ -97,11 +97,12 @@
 /* Responsive adjustment */
 @media (max-width: 1024px) {
     .booking-container {
-        margin-left: 80px; /* If your sidebar shrinks */
+        margin-left: 80px;
         width: calc(100% - 80px);
     }
 }
 
+/* Mark Completed Button */
 .btn-complete {
     background-color: #2ecc71;
     color: white;
@@ -118,8 +119,20 @@
     background-color: #27ae60;
 }
 
-/* Optional: style for when it's already completed */
-.status-completed {
-    background-color: #d4edda;
-    color: #155724;
+/* NEW: View Patient History Button */
+.btn-history {
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: background 0.3s;
+    white-space: nowrap;
+}
+
+.btn-history:hover {
+    background-color: #1a6fa3;
 }

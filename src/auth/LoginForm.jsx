@@ -75,7 +75,7 @@ const LoginForm = () => {
                 {/* Right Section: Form */}
                 <div className="login-form-section">
                     <div className="form-header">
-                        <h2>Portal Login</h2>
+                        <h2>NephroMind Login</h2>
                         <p>Please enter your details to continue.</p>
                         {error && <p style={{ color: '#ef4444', fontSize: '13px' }}>{error}</p>}
                     </div>
@@ -116,7 +116,6 @@ const LoginForm = () => {
                         </div>
 
                         <div className="button-group">
-                            <button type="button" className="btn-scan">Scan QR</button>
                             <button type="submit" className="btn-login" disabled={loading}>
                                 {loading ? 'Checking...' : 'Login'}
                             </button>

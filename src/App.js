@@ -15,6 +15,8 @@ import DoctorMultimedia from './components/DoctorMultimedia';
 import DoctorQuestions from './components/DoctorQuestions';
 import AddDoctor from './components/AddDoctor';
 import DoctorBookings from './components/DoctorBookings';
+import PatientHistory from './components/PatientHistory';
+
 
 
 function App() {
@@ -36,6 +38,7 @@ function App() {
                 <Route path="/doctor/questions" element={<DoctorQuestions />} />
                 <Route path="/doctor-handle" element={<AddDoctor />} />
                 <Route path="/doctor-bookings" element={<DoctorBookings />} />
+                <Route path="/patient-history/:patientId" element={<PatientHistory />} />
             </Routes>
         </Router>
     );
