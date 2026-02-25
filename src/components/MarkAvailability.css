@@ -1,0 +1,129 @@
+/* ── Global Reset for this page ── */
+.av-layout {
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+    background: #f8fafc;
+    overflow-x: hidden;
+}
+
+/* ── Sidebar Space Guard ── */
+/* This ensures that even if SidebarDR is fixed, the main content starts AFTER it */
+.av-main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    /* CHANGE THIS: Match this exactly to your sidebar's width */
+    margin-left: 260px; 
+    box-sizing: border-box;
+}
+
+/* ── Content Container ── */
+.av-container {
+    width: 100%;
+    max-width: 900px; /* Limits width so it doesn't look stretched on wide monitors */
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ── Header Styling ── */
+.av-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.av-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #2b3674;
+    margin: 0;
+}
+
+.av-subtitle {
+    font-size: 14px;
+    color: #a3aed0;
+}
+
+/* ── Card Styling ── */
+.av-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.av-section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2b3674;
+    margin-bottom: 15px;
+}
+
+/* ── Input Styling ── */
+.av-date-input {
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    width: 250px;
+}
+
+/* ── Slot Rows ── */
+.av-slot-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8fafc;
+    padding: 15px 20px;
+    border-radius: 15px;
+    margin-bottom: 12px;
+}
+
+.av-slot-name {
+    font-weight: 600;
+    color: #2b3674;
+}
+
+.av-slot-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.av-slot-input {
+    width: 60px;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e0;
+    text-align: center;
+}
+
+/* ── Buttons ── */
+.av-save-btn {
+    background: #4318ff;
+    color: white;
+    padding: 16px;
+    border: none;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.av-save-btn:hover {
+    background: #3311cc;
+    transform: translateY(-2px);
+}
+
+/* ── Responsive Fix for Mobile ── */
+@media (max-width: 1024px) {
+    .av-main {
+        margin-left: 0; /* Sidebar likely becomes a toggle menu on mobile */
+        padding: 20px;
+    }
+}

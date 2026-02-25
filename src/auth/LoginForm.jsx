@@ -42,13 +42,15 @@ const LoginForm = () => {
             });
 
             if (doctorRes.ok) {
-                const data = await doctorRes.json();
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('role', 'doctor');
-                localStorage.setItem('doctorId', data.doctorId || data.uid || data.id);                
-                navigate('/doctor-dashboard');
-                return;
-            }
+    const data = await doctorRes.json();
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('role', 'doctor');
+    localStorage.setItem('doctorId',   data.doctorId   || data.uid      || data.id       || '');
+    localStorage.setItem('doctorName', data.doctorName || data.username || data.name     || '');
+    localStorage.setItem('hospital',   data.hospital   || data.hospitalName              || '');
+    navigate('/doctor-dashboard');
+    return;
+}
 
             setError('Invalid credentials for Admin or Doctor.');
         } catch (err) {

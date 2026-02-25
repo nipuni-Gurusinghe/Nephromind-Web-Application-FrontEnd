@@ -1,3 +1,4 @@
+// SidebarDR.jsx — updated with Mark Availability menu item
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Sidebar.css';
@@ -7,12 +8,13 @@ const SidebarDR = () => {
     const location = useLocation();
 
     const menuItems = [
-        { name: 'Doctor Dashboard', path: '/doctor-dashboard', icon: '🩺' },
-        { name: 'My Bookings',      path: '/doctor-bookings',  icon: '❇️' },
-        { name: 'View Events',      path: '/doctor-events',    icon: '📅' },
-        { name: 'FAQ',              path: '/doctor-faq',       icon: '❓' },
-        { name: 'Multimedia',       path: '/doctor-multimedia', icon: '🎬' },
-        { name: 'Pending Questions', path: '/doctor-questions', icon: '📝' }, // fixed path
+        { name: 'Doctor Dashboard',   path: '/doctor-dashboard',    icon: '🩺' },
+        { name: 'My Bookings',        path: '/doctor-bookings',     icon: '❇️' },
+        { name: 'Mark Availability',  path: '/doctor-availability', icon: '📋' },
+        { name: 'View Events',        path: '/doctor-events',       icon: '📅' },
+        { name: 'FAQ',                path: '/doctor-faq',          icon: '❓' },
+        { name: 'Multimedia',         path: '/doctor-multimedia',   icon: '🎬' },
+        { name: 'Pending Questions',  path: '/doctor-questions',    icon: '📝' },
     ];
 
     const handleLogout = () => {

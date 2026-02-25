@@ -18,6 +18,7 @@
     align-items: center;
     gap: 20px;
     margin-bottom: 30px;
+    flex-wrap: wrap;
 }
 
 .ph-back-btn {
@@ -32,29 +33,43 @@
     transition: all 0.2s;
     white-space: nowrap;
 }
+.ph-back-btn:hover { background: #2980b9; color: white; border-color: #2980b9; }
 
-.ph-back-btn:hover {
-    background: #2980b9;
+.ph-title-block h2 { color: #2c3e50; font-size: 24px; margin: 0 0 4px 0; }
+.ph-subtitle { color: #7f8c8d; font-size: 14px; margin: 0; }
+
+/* Header action buttons group */
+.ph-header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Water Intake Toggle Button */
+.ph-water-btn {
+    background: #e0f2fe;
+    color: #0369a1;
+    border: 1.5px solid #bae6fd;
+    padding: 9px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+.ph-water-btn:hover { background: #bae6fd; }
+.ph-water-btn-active {
+    background: #0ea5e9;
     color: white;
-    border-color: #2980b9;
+    border-color: #0ea5e9;
 }
-
-.ph-title-block h2 {
-    color: #2c3e50;
-    font-size: 24px;
-    margin: 0 0 4px 0;
-}
-
-.ph-subtitle {
-    color: #7f8c8d;
-    font-size: 14px;
-    margin: 0;
-}
+.ph-water-btn-active:hover { background: #0284c7; }
 
 /* Loading / Error / Empty States */
-.ph-loading,
-.ph-error,
-.ph-empty {
+.ph-loading, .ph-error, .ph-empty {
     background: white;
     border-radius: 12px;
     padding: 60px;
@@ -63,13 +78,97 @@
     color: #7f8c8d;
     box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
-
 .ph-error { color: #e74c3c; }
+.ph-empty span { font-size: 48px; display: block; margin-bottom: 12px; }
 
-.ph-empty span {
-    font-size: 48px;
-    display: block;
-    margin-bottom: 12px;
+/* ── Water Intake Section ── */
+.ph-water-section {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 20px rgba(14, 165, 233, 0.1);
+    border: 1.5px solid #e0f2fe;
+    animation: ph-slidedown 0.25s ease;
+}
+
+@keyframes ph-slidedown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.ph-water-section-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.ph-water-section-header h3 {
+    font-size: 18px;
+    color: #0c4a6e;
+    margin: 0 0 4px 0;
+    font-weight: 700;
+}
+.ph-water-section-header p { font-size: 13px; color: #64748b; margin: 0; }
+
+.ph-water-loading, .ph-water-error, .ph-water-empty {
+    text-align: center;
+    padding: 40px;
+    color: #94a3b8;
+    font-size: 14px;
+}
+.ph-water-error { color: #ef4444; }
+.ph-water-empty span { font-size: 40px; display: block; margin-bottom: 8px; }
+
+/* Water Summary Cards */
+.ph-water-cards {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.ph-water-card {
+    flex: 1;
+    min-width: 140px;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.ph-water-card-blue   { background: #eff6ff; border: 1px solid #bfdbfe; }
+.ph-water-card-cyan   { background: #ecfeff; border: 1px solid #a5f3fc; }
+.ph-water-card-teal   { background: #f0fdfa; border: 1px solid #99f6e4; }
+.ph-water-card-indigo { background: #eef2ff; border: 1px solid #c7d2fe; }
+
+.ph-water-card-icon { font-size: 28px; flex-shrink: 0; }
+
+.ph-water-card-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #64748b;
+    margin: 0 0 4px 0;
+}
+.ph-water-card-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0c4a6e;
+    margin: 0;
+}
+
+/* Water amount inline */
+.ph-water-amount {
+    font-weight: 600;
+    color: #0369a1;
+}
+
+/* Low badge for water */
+.ph-badge-low {
+    background-color: #fff7ed;
+    color: #c2410c;
 }
 
 /* Summary Cards */
@@ -100,18 +199,9 @@
     font-weight: 600;
 }
 
-.ph-card-value {
-    font-size: 20px;
-    font-weight: 700;
-    color: #2c3e50;
-}
+.ph-card-value { font-size: 20px; font-weight: 700; color: #2c3e50; }
+.ph-card-sm { font-size: 13px; font-weight: 600; }
 
-.ph-card-sm {
-    font-size: 13px;
-    font-weight: 600;
-}
-
-/* Diagnosis / Severity Colors */
 .ph-val-ckd { color: #e74c3c; }
 .ph-val-normal { color: #27ae60; }
 .ph-sev-h { color: #e74c3c; }
@@ -126,31 +216,12 @@
     margin-bottom: 24px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
-
-.ph-chart-card h3 {
-    font-size: 16px;
-    color: #2c3e50;
-    margin: 0 0 4px 0;
-    font-weight: 700;
-}
-
-.ph-chart-desc {
-    font-size: 13px;
-    color: #95a5a6;
-    margin: 0 0 20px 0;
-}
+.ph-chart-card h3 { font-size: 16px; color: #2c3e50; margin: 0 0 4px 0; font-weight: 700; }
+.ph-chart-desc { font-size: 13px; color: #95a5a6; margin: 0 0 20px 0; }
 
 /* Table */
-.ph-table-scroll {
-    overflow-x: auto;
-}
-
-.ph-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-}
-
+.ph-table-scroll { overflow-x: auto; }
+.ph-table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .ph-table th {
     background-color: #f8f9fa;
     color: #34495e;
@@ -163,17 +234,13 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
-
 .ph-table td {
     padding: 12px 14px;
     border-bottom: 1px solid #edf2f7;
     color: #2d3436;
     white-space: nowrap;
 }
-
-.ph-table tr:last-child td {
-    border-bottom: none;
-}
+.ph-table tr:last-child td { border-bottom: none; }
 
 /* Badges */
 .ph-badge {
@@ -183,20 +250,11 @@
     font-weight: 700;
     display: inline-block;
 }
-
-.ph-badge-normal {
-    background-color: #d4edda;
-    color: #155724;
-}
-
-.ph-badge-ckd {
-    background-color: #f8d7da;
-    color: #721c24;
-}
+.ph-badge-normal { background-color: #d4edda; color: #155724; }
+.ph-badge-ckd { background-color: #f8d7da; color: #721c24; }
 
 /* PDF Download Button */
 .ph-download-btn {
-    margin-left: auto;
     background-color: #2c3e50;
     color: white;
     border: none;
@@ -208,17 +266,10 @@
     transition: background 0.3s;
     white-space: nowrap;
 }
+.ph-download-btn:hover { background-color: #1a252f; }
+.ph-download-btn:disabled { background-color: #95a5a6; cursor: not-allowed; }
 
-.ph-download-btn:hover {
-    background-color: #1a252f;
-}
-
-.ph-download-btn:disabled {
-    background-color: #95a5a6;
-    cursor: not-allowed;
-}
-
-/* PDF Report Header - shown inside captured content */
+/* PDF Report Header */
 .ph-pdf-header {
     background: #2c3e50;
     color: white;
@@ -226,27 +277,17 @@
     border-radius: 12px;
     margin-bottom: 20px;
 }
-
-.ph-pdf-header h3 {
-    margin: 0 0 4px 0;
-    font-size: 16px;
-}
-
-.ph-pdf-header p {
-    margin: 0;
-    font-size: 13px;
-    opacity: 0.85;
-}
+.ph-pdf-header h3 { margin: 0 0 4px 0; font-size: 16px; }
+.ph-pdf-header p { margin: 0; font-size: 13px; opacity: 0.85; }
 
 /* Responsive */
 @media (max-width: 1024px) {
-    .ph-container {
-        margin-left: 80px;
-        width: calc(100% - 80px);
-        padding: 20px;
-    }
+    .ph-container { margin-left: 80px; width: calc(100% - 80px); padding: 20px; }
+    .ph-summary-cards { flex-wrap: wrap; }
+    .ph-water-cards { flex-wrap: wrap; }
+}
 
-    .ph-summary-cards {
-        flex-wrap: wrap;
-    }
+@media (max-width: 768px) {
+    .ph-header { flex-direction: column; align-items: flex-start; }
+    .ph-header-actions { margin-left: 0; }
 }
