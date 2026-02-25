@@ -17,9 +17,11 @@ const AddDoctorModal = ({ isOpen, onClose }) => {
     ];
 
     const hospitals = [
-        "National Hospital of Sri Lanka", "Colombo South Teaching Hospital", "Galle National Hospital",
-        "Kandy General Hospital", "Jaffna Teaching Hospital", "Karapitiya Teaching Hospital",
-        "Sri Jayewardenepura General Hospital", "Anuradhapura Teaching Hospital"
+        "Colombo East Base Hospital Mulleriyawa",
+  "National Hospital of Sri Lanka",
+  "Wellawaya Base Hospital",
+  "Karapitiya Teaching Hospital",
+  "National Institute for Nephrology Dialysis & Transplantation (NINDT)",
     ];
 
     if (!isOpen) return null;
