@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from './common/Sidebar';
-import './AdminDashboard.css';
+import './FAQDashboard.css';
+
+const CATEGORY_COLORS = {
+    Prevention: { bg: '#dbeafe', color: '#1d4ed8' },
+    Treatment:  { bg: '#fce7f3', color: '#9d174d' },
+    Lifestyle:  { bg: '#d1fae5', color: '#065f46' },
+    General:    { bg: '#fef3c7', color: '#92400e' },
+    Diagnosis:  { bg: '#ede9fe', color: '#5b21b6' },
+};
+const getCatStyle = (cat) => CATEGORY_COLORS[cat] || { bg: '#f1f5f9', color: '#475569' };
 
 const FAQDashboard = () => {
     const [faqs, setFaqs] = useState([]);
@@ -8,38 +17,30 @@ const FAQDashboard = () => {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [selectedFaqId, setSelectedFaqId] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [search, setSearch] = useState('');
+    const [activeCategory, setActiveCategory] = useState('All');
+    const [openId, setOpenId] = useState(null);
 
     const [formData, setFormData] = useState({
-        question: '',
-        answer: '',
-        category: 'Prevention',
-        isActive: true,
-        order: 1
+        question: '', answer: '', category: 'Prevention', isActive: true, order: 1
     });
 
     const API_URL = 'http://localhost:5003/admin/community/faq';
 
-    // 1. Fetch all FAQs
     const fetchFAQs = () => {
         fetch(API_URL)
             .then(res => res.json())
             .then(data => setFaqs(Array.isArray(data) ? data : []))
-            .catch(err => console.error("Fetch error:", err));
+            .catch(err => console.error('Fetch error:', err));
     };
 
-    useEffect(() => {
-        fetchFAQs();
-    }, []);
+    useEffect(() => { fetchFAQs(); }, []);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: type === 'checkbox' ? checked : value
-        }));
+        setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
     };
 
-    // 2. Add New FAQ
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -54,167 +55,214 @@ const FAQDashboard = () => {
                     updatedAt: new Date().toISOString()
                 })
             });
-
             if (response.ok) {
-                alert("FAQ Added Successfully!");
                 setIsModalOpen(false);
                 fetchFAQs();
                 setFormData({ question: '', answer: '', category: 'Prevention', isActive: true, order: faqs.length + 1 });
             }
         } catch (error) {
-            console.error("Error adding FAQ:", error);
+            console.error('Error adding FAQ:', error);
         } finally {
             setLoading(false);
         }
     };
 
-    // 3. Delete FAQ Logic
-    const confirmDelete = (id) => {
-        console.log("Preparing to delete FAQ with ID:", id);
-        setSelectedFaqId(id);
-        setIsDeleteModalOpen(true);
-    };
+    const confirmDelete = (id) => { setSelectedFaqId(id); setIsDeleteModalOpen(true); };
 
     const handleDelete = async () => {
         if (!selectedFaqId) return;
-
         setLoading(true);
         try {
-            const response = await fetch(`${API_URL}/${selectedFaqId}`, {
-                method: 'DELETE',
-            });
-
+            const response = await fetch(`${API_URL}/${selectedFaqId}`, { method: 'DELETE' });
             if (response.ok) {
                 setIsDeleteModalOpen(false);
                 setSelectedFaqId(null);
                 fetchFAQs();
-            } else {
-                alert("Failed to delete FAQ.");
             }
         } catch (error) {
-            console.error("Delete error:", error);
+            console.error('Delete error:', error);
         } finally {
             setLoading(false);
         }
     };
 
-    return (
-        <div className="dashboard-container">
-            <Sidebar />
-            <main className="main-content">
-                <header className="top-bar">
-                    <div className="header-text">
-                        <h1>FAQ Management</h1>
-                        <p>Manage community questions and answers.</p>
-                    </div>
-                    <button className="btn-primary" onClick={() => setIsModalOpen(true)}>
-                        + Add FAQ
-                    </button>
-                </header>
+    const categories = ['All', ...new Set(faqs.map(f => f.category).filter(Boolean))];
 
-                <div className="data-card">
-                    <table className="admin-table">
-                        <thead>
-                            <tr>
-                                <th>ORDER</th>
-                                <th>QUESTION</th>
-                                <th>CATEGORY</th>
-                                <th>STATUS</th>
-                                <th>ACTIONS</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {faqs.map((faq) => (
-                                <tr key={faq._id || faq.id}>
-                                    <td>{faq.order}</td>
-                                    <td><strong>{faq.question}</strong></td>
-                                    <td>{faq.category}</td>
-                                    <td>
-                                        <span className={`status-badge ${faq.isActive ? 'Active' : 'Draft'}`}>
-                                            {faq.isActive ? 'Active' : 'Inactive'}
-                                        </span>
-                                    </td>
-                                    <td className="action-icons">
-                                        {/* <span className="edit-icon" style={{cursor: 'pointer'}}>✏️</span> */}
-                                        <span 
-                                            className="delete-icon" 
-                                            onClick={() => confirmDelete(faq._id || faq.id)}
-                                            style={{ cursor: 'pointer', marginLeft: '12px' }}
-                                        >
-                                            🗑️
-                                        </span>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+    const filtered = faqs.filter(f => {
+        const matchCat = activeCategory === 'All' || f.category === activeCategory;
+        const matchSearch = f.question?.toLowerCase().includes(search.toLowerCase()) ||
+                            f.answer?.toLowerCase().includes(search.toLowerCase());
+        return matchCat && matchSearch;
+    });
+
+    const toggleOpen = (id) => setOpenId(prev => prev === id ? null : id);
+
+    return (
+        <div className="fq-layout">
+            <Sidebar />
+            <div className="fq-container">
+
+                {/* Header */}
+                <div className="fq-header">
+                    <div className="fq-header-left">
+                        <span className="fq-tag">ADMIN PANEL</span>
+                        <h1 className="fq-title">FAQ Management</h1>
+                        <p className="fq-subtitle">Manage community questions and answers</p>
+                    </div>
+                    <div className="fq-header-right">
+                        <div className="fq-search-wrap">
+                            <span className="fq-search-icon">🔍</span>
+                            <input
+                                className="fq-search"
+                                type="text"
+                                placeholder="Search FAQs..."
+                                value={search}
+                                onChange={e => setSearch(e.target.value)}
+                            />
+                        </div>
+                        <div className="fq-count-pill">{filtered.length} FAQs</div>
+                        <button className="fq-add-btn" onClick={() => setIsModalOpen(true)}>
+                            + Add FAQ
+                        </button>
+                    </div>
                 </div>
 
-                {/* --- ADD MODAL --- */}
-                {isModalOpen && (
-                    <div className="modal-overlay">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h2>Create New FAQ</h2>
-                                <button className="close-btn" onClick={() => setIsModalOpen(false)}>&times;</button>
-                            </div>
-                            <form onSubmit={handleSubmit} className="modal-form">
-                                <div className="form-group">
-                                    <label>Question</label>
-                                    <input type="text" name="question" value={formData.question} onChange={handleChange} required />
-                                </div>
-                                <div className="form-group">
-                                    <label>Answer</label>
-                                    <textarea name="answer" value={formData.answer} onChange={handleChange} rows="4" required></textarea>
-                                </div>
-                                <div className="form-row">
-                                    <div className="form-group">
-                                        <label>Category</label>
-                                        <select name="category" value={formData.category} onChange={handleChange}>
-                                            <option value="Prevention">Prevention</option>
-                                            <option value="Treatment">Treatment</option>
-                                            <option value="Lifestyle">Lifestyle</option>
-                                            <option value="General">General</option>
-                                        </select>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Display Order</label>
-                                        <input type="number" name="order" value={formData.order} onChange={handleChange} />
-                                    </div>
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn-secondary" onClick={() => setIsModalOpen(false)}>Cancel</button>
-                                    <button type="submit" className="btn-primary" disabled={loading}>
-                                        {loading ? "Saving..." : "Save FAQ"}
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                {/* Category Tabs */}
+                <div className="fq-tabs">
+                    {categories.map(cat => (
+                        <button
+                            key={cat}
+                            className={`fq-tab ${activeCategory === cat ? 'fq-tab-active' : ''}`}
+                            onClick={() => setActiveCategory(cat)}
+                        >
+                            {cat}
+                        </button>
+                    ))}
+                </div>
+
+                {/* Empty */}
+                {filtered.length === 0 && (
+                    <div className="fq-empty">
+                        <span>❓</span>
+                        <p>{search ? 'No FAQs match your search.' : 'No FAQs yet. Add the first one!'}</p>
                     </div>
                 )}
 
-                {/* --- DELETE CONFIRMATION MODAL --- */}
-                {isDeleteModalOpen && (
-                    <div className="modal-overlay">
-                        <div className="modal-content confirm-modal">
-                            <div className="modal-header">
-                                <h2>Confirm Delete</h2>
-                            </div>
-                            <div className="modal-body">
-                                <p style={{color: '#2b3674', margin: '20px 0'}}>
-                                    Are you sure you want to delete this FAQ?
-                                </p>
-                            </div>
-                            <div className="modal-footer">
-                                <button className="btn-secondary" onClick={() => setIsDeleteModalOpen(false)} disabled={loading}>Cancel</button>
-                                <button className="btn-danger" onClick={handleDelete} disabled={loading}>
-                                    {loading ? "Deleting..." : "Yes, Delete"}
-                                </button>
-                            </div>
-                        </div>
+                {/* FAQ Accordion List */}
+                {filtered.length > 0 && (
+                    <div className="fq-list">
+                        {filtered.map((faq, idx) => {
+                            const id = faq._id || faq.id;
+                            const isOpen = openId === id;
+                            const catStyle = getCatStyle(faq.category);
+
+                            return (
+                                <div
+                                    key={id}
+                                    className={`fq-item ${isOpen ? 'fq-item-open' : ''}`}
+                                    style={{ animationDelay: `${idx * 0.04}s` }}
+                                >
+                                    <div className="fq-question-row" onClick={() => toggleOpen(id)}>
+                                        <div className="fq-question-left">
+                                            <span className="fq-q-number">Q{faq.order || idx + 1}</span>
+                                            <span className="fq-question-text">{faq.question}</span>
+                                        </div>
+                                        <div className="fq-question-right">
+                                            {faq.category && (
+                                                <span className="fq-cat-badge" style={{ background: catStyle.bg, color: catStyle.color }}>
+                                                    {faq.category}
+                                                </span>
+                                            )}
+                                            <span className={`fq-status ${faq.isActive ? 'fq-status-active' : 'fq-status-inactive'}`}>
+                                                {faq.isActive ? '● Active' : '○ Inactive'}
+                                            </span>
+                                            <button
+                                                className="fq-delete-btn"
+                                                onClick={(e) => { e.stopPropagation(); confirmDelete(id); }}
+                                            >
+                                                🗑
+                                            </button>
+                                            <span className={`fq-chevron ${isOpen ? 'fq-chevron-open' : ''}`}>›</span>
+                                        </div>
+                                    </div>
+
+                                    {isOpen && (
+                                        <div className="fq-answer">
+                                            <div className="fq-answer-inner">
+                                                <p>{faq.answer}</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        })}
                     </div>
                 )}
-            </main>
+            </div>
+
+            {/* ADD MODAL */}
+            {isModalOpen && (
+                <div className="fq-modal-overlay" onClick={() => setIsModalOpen(false)}>
+                    <div className="fq-modal" onClick={e => e.stopPropagation()}>
+                        <div className="fq-modal-header">
+                            <div>
+                                <h2>Create New FAQ</h2>
+                                <p>Add a question and answer for the community</p>
+                            </div>
+                            <button className="fq-modal-close" onClick={() => setIsModalOpen(false)}>✕</button>
+                        </div>
+                        <form onSubmit={handleSubmit} className="fq-modal-form">
+                            <div className="fq-form-group">
+                                <label>Question</label>
+                                <input type="text" name="question" value={formData.question} onChange={handleChange} placeholder="e.g. What is CKD?" required />
+                            </div>
+                            <div className="fq-form-group">
+                                <label>Answer</label>
+                                <textarea name="answer" value={formData.answer} onChange={handleChange} rows="4" placeholder="Write a clear and helpful answer..." required></textarea>
+                            </div>
+                            <div className="fq-form-row">
+                                <div className="fq-form-group">
+                                    <label>Category</label>
+                                    <select name="category" value={formData.category} onChange={handleChange}>
+                                        <option value="Prevention">Prevention</option>
+                                        <option value="Treatment">Treatment</option>
+                                        <option value="Lifestyle">Lifestyle</option>
+                                        <option value="General">General</option>
+                                        <option value="Diagnosis">Diagnosis</option>
+                                    </select>
+                                </div>
+                                <div className="fq-form-group">
+                                    <label>Display Order</label>
+                                    <input type="number" name="order" value={formData.order} onChange={handleChange} min="1" />
+                                </div>
+                            </div>
+                            <div className="fq-modal-footer">
+                                <button type="button" className="fq-btn-cancel" onClick={() => setIsModalOpen(false)}>Cancel</button>
+                                <button type="submit" className="fq-btn-save" disabled={loading}>
+                                    {loading ? 'Saving...' : 'Save FAQ'}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* DELETE MODAL */}
+            {isDeleteModalOpen && (
+                <div className="fq-modal-overlay" onClick={() => setIsDeleteModalOpen(false)}>
+                    <div className="fq-modal fq-modal-sm" onClick={e => e.stopPropagation()}>
+                        <div className="fq-delete-icon-wrap">🗑️</div>
+                        <h2 className="fq-delete-title">Delete FAQ?</h2>
+                        <p className="fq-delete-msg">This action cannot be undone. The FAQ will be permanently removed.</p>
+                        <div className="fq-modal-footer fq-footer-center">
+                            <button className="fq-btn-cancel" onClick={() => setIsDeleteModalOpen(false)} disabled={loading}>Keep it</button>
+                            <button className="fq-btn-danger" onClick={handleDelete} disabled={loading}>
+                                {loading ? 'Deleting...' : 'Yes, Delete'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

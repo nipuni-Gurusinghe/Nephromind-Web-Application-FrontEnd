@@ -3,22 +3,28 @@
     background: white;
     display: flex;
     flex-direction: column;
-    padding: 30px 15px;
+    padding: 30px 15px 0 15px; /* remove bottom padding — footer handles it */
     position: fixed;
     height: 100vh;
     border-right: 1px solid #f0f0f0;
-    overflow-y: auto; 
-    scrollbar-width: thin;
+    overflow: hidden; /* prevent the whole sidebar from scrolling */
 }
-/* For Chrome/Safari */
-.sidebar::-webkit-scrollbar {
+
+/* Only the nav scrolls, not the entire sidebar */
+.sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    padding-bottom: 10px;
+}
+
+.sidebar-nav::-webkit-scrollbar {
     width: 6px;
 }
-.sidebar::-webkit-scrollbar-thumb {
+.sidebar-nav::-webkit-scrollbar-thumb {
     background-color: #cbd5e1;
     border-radius: 10px;
 }
-
 
 .sidebar-brand {
     display: flex;
@@ -28,6 +34,7 @@
     font-weight: 800;
     color: #2b3674;
     margin-bottom: 40px;
+    flex-shrink: 0;
 }
 
 .brand-icon {
@@ -39,6 +46,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 6px;
+    flex-shrink: 0;
 }
 
 .nav-label {
@@ -49,6 +57,9 @@
 }
 
 .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     padding: 12px 15px;
     color: #707eae;
     cursor: pointer;
@@ -64,5 +75,30 @@
     font-weight: bold;
 }
 
-.sidebar-footer { margin-top: auto; border-top: 1px solid #eee; padding-top: 20px; }
-.logout-btn { background: none; border: none; color: #ee5d50; cursor: pointer; font-weight: 600; }
+/* Footer always visible at the bottom */
+.sidebar-footer {
+    flex-shrink: 0;
+    border-top: 1px solid #eee;
+    padding: 16px 15px 24px 15px;
+    background: white;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: #ee5d50;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.logout-btn:hover {
+    background: #fff5f5;
+}

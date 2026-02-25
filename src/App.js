@@ -35,7 +35,7 @@ function App() {
                 <Route path="/doctor-events" element={<DoctorEvents />} />
                 <Route path="/doctor-faq" element={<DoctorFAQ />} />
                 <Route path="/doctor-multimedia" element={<DoctorMultimedia />} />
-                <Route path="/doctor/questions" element={<DoctorQuestions />} />
+                <Route path="/doctor-questions" element={<DoctorQuestions />} />
                 <Route path="/doctor-handle" element={<AddDoctor />} />
                 <Route path="/doctor-bookings" element={<DoctorBookings />} />
                 <Route path="/patient-history/:patientId" element={<PatientHistory />} />
